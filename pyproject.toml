@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "testing"
+version = "0.1.0"
+description = ""
+authors = ["drforse <george.lifeslice@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fastapi = "^0.73.0"
+uvicorn = {extras = ["standard"], version = "^0.17.1"}
+motor = "^2.5.1"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2.5"
+pytest-anyio = "^0.0.0"
+httpx = "^0.22.0"
+mypy = "^0.931"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

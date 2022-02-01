@@ -1,0 +1,28 @@
+version: '3'
+services:
+  web:
+    build: .
+    volumes:
+      - ./config.ini:/app/config.ini
+    depends_on:
+      - mongo
+    restart: unless-stopped
+  mongo:
+    image: mongo
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME:-root}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_USERNAME:-root_password}
+    volumes:
+      - database:/var/lib/mysql
+  nginx:
+    build:
+      context: .
+      dockerfile: Dockerfile.nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - web
+    restart: unless-stopped
+volumes:
+  database: {}
